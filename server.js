@@ -7,11 +7,7 @@ var cheerio = require('cheerio');
 // Initialize Express
 var app = express();
 
-// Set up a static folder (public) for our web app
-app.use(express.static("public"));
-
 // Database configuration
-// Save the URL of our database as well as the name of our collection
 var databaseUrl = "news";
 var collections = ["articles"];
 
@@ -25,8 +21,10 @@ db.on("error", function (error) {
 
 // Routes
 // 1. At the root path, send a simple hello world message to the browser
+app.use(express.static(__dirname + '/public'));
 app.get("/", function (req, res) {
-    res.send("Hello world");
+    // res.send("Hello world");
+    res.sendfile(__dirname + '/public/index.html');
 });
 
 // 2. At the "/all" path, display every entry in the articles collection
@@ -53,13 +51,13 @@ app.get("/scrape", function (req, res) {
         // For each element with a "title" class
         $(".story-heading").each(function (i, element) {
             // Save the title and summary of each article enclosed in the current element
-            var title = $(element).children("h2").children('a').text();
-            var summary = $(element).children("h2").children('.summary').text();
+            var title = $(element).children('a').text();
+            var summary = $(element).children('.summary').text();
 
             // If this found element had both a title and a summary
             if (title && summary) {
-                // Insert the data in the scrapedData db
-                db.scrapedData.insert({
+                // Insert the data in the articles db
+                db.articles.insert({
                     title: title,
                     summary: summary
                 },

@@ -1,5 +1,5 @@
 {
-  "name": "Mongoose-and-Cheerio-News-Scraper",
+  "name": "mongoose_and_cheerio_news_scraper",
   "version": "1.0.0",
   "description": "Mongoose and Cheerio News Scraper",
   "main": "server.js",
