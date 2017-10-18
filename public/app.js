@@ -24,5 +24,11 @@ $(document).ready(function () {
         displayResults(data);
     });
 
+    // When the user clicks "Scrape New Articles", display the articles from NYT
+    $('#openModal').on("click", function(){
+        $.getJSON("/scrape", function(data){
+            displayResults(data);
+        });
+    });
 
 });

@@ -23,7 +23,6 @@ db.on("error", function (error) {
 // 1. At the root path, send a simple hello world message to the browser
 app.use(express.static(__dirname + '/public'));
 app.get("/", function (req, res) {
-    // res.send("Hello world");
     res.sendfile(__dirname + '/public/index.html');
 });
 
