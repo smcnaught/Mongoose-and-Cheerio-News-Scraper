@@ -1,6 +1,8 @@
 // Dependencies
 var express = require("express");
 var mongojs = require("mongojs");
+var request = require('request');
+var cheerio = require('cheerio');
 
 // Initialize Express
 var app = express();
@@ -41,6 +43,44 @@ app.get("/all", function (req, res) {
         }
     });
 });
+
+// Scrape data from one site and place it into the mongodb db
+app.get("/scrape", function (req, res) {
+    // Make a request for the news section of ycombinator
+    request("https://www.nytimes.com/", function (error, response, html) {
+        // Load the html body from request into cheerio
+        var $ = cheerio.load(html);
+        // For each element with a "title" class
+        $(".story-heading").each(function (i, element) {
+            // Save the title and summary of each article enclosed in the current element
+            var title = $(element).children("h2").children('a').text();
+            var summary = $(element).children("h2").children('.summary').text();
+
+            // If this found element had both a title and a summary
+            if (title && summary) {
+                // Insert the data in the scrapedData db
+                db.scrapedData.insert({
+                    title: title,
+                    summary: summary
+                },
+                    function (err, inserted) {
+                        if (err) {
+                            // Log the error if one is encountered during the query
+                            console.log(err);
+                        }
+                        else {
+                            // Otherwise, log the inserted data
+                            console.log(inserted);
+                        }
+                    });
+            }
+        });
+    });
+
+    // Send a "Scrape Complete" message to the browser
+    res.send("Scrape Complete");
+});
+
 
 // Set the app to listen on port 3000
 app.listen(3000, function () {

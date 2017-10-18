@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/smcnaught/Mongoose-and-Cheerio-News-Scraper#readme",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.2",
-    "mongojs": "^2.4.1"
+    "mongojs": "^2.4.1",
+    "request": "^2.83.0"
   }
 }
