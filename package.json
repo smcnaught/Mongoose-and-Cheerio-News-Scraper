@@ -1,0 +1,25 @@
+{
+  "name": "Mongoose-and-Cheerio-News-Scraper",
+  "version": "1.0.0",
+  "description": "Mongoose and Cheerio News Scraper",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smcnaught/Mongoose-and-Cheerio-News-Scraper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smcnaught/Mongoose-and-Cheerio-News-Scraper/issues"
+  },
+  "homepage": "https://github.com/smcnaught/Mongoose-and-Cheerio-News-Scraper#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongojs": "^2.4.1"
+  }
+}
