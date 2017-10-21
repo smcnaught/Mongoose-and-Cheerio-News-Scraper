@@ -1,23 +1,129 @@
 // Dependencies
-var express = require("express");
-var mongojs = require("mongojs");
-var request = require('request');
 var cheerio = require('cheerio');
+var request = require('request');
+
+var express = require("express");
+var mongoose = require('mongoose');
+var mongojs = require("mongojs");
+
+// var model = require('./public/model.js'); 
 
 // Initialize Express
 var app = express();
 
-// Database configuration
+var artTitles = [];
+var artSummaries = [];
+
+// First, tell the console what server.js is doing
+console.log("\n***********************************\n" +
+"Grabbing every title and summary\n" +
+"from NY Times Site:" +
+"\n***********************************\n");
+
+// Making a request for reddit's "webdev" board. The page's HTML is passed as the callback's third argument
+request("https://www.nytimes.com/", function(error, response, html) {
+
+// Load the HTML into cheerio and save it to a variable
+// '$' becomes a shorthand for cheerio's selector commands, much like jQuery's '$'
+var $ = cheerio.load(html);
+
+// An empty array to save the data that we'll scrape
+var results = [];
+
+// With cheerio, find each p-tag with the "title" class
+// (i: iterator. element: the current element)
+// $(".story-heading").each(function(i, element) {
+    $(".collection").each(function(i, element) {
+// Save the text of the element in a "title" variable
+// var title = $(element).children('a').text();
+// var summary = $(element).children('.summary').text();
+
+var title = $(element).children('article').children('h2').children('a').text();
+var summary = $(element).children('article').children('.summary').text();
+
+// Save these results in an object that we'll push into the results array we defined earlier
+results.push({
+title: title,
+summary: summary
+});
+});
+
+// Log the results once you've looped through each of the elements found with cheerio
+// console.log(results);
+
+for(let i = 0; i < results.length; i++){
+    if(results[i].title !== ''){
+        artTitles.push(results[i].title);
+    }
+    if(results[i].summary !== ''){
+        artSummaries.push(results[i].summary);
+    }
+}
+console.log('THESE ARE THE ARTICLE TITLES', artTitles);
+console.log('THESE ARE THE ARTICLE SUMMARIES', artSummaries);
+
+});
+
+//// TESTING AGAIN
+// ==============================================
 var databaseUrl = "news";
 var collections = ["articles"];
 
-// Use mongojs to hook the database to the db variable
-var db = mongojs(databaseUrl, collections);
+// Database configuration with mongoose
+mongoose.connect("mongodb://localhost/news");
+var db = mongoose.connection;
 
 // This makes sure that any errors are logged if mongodb runs into an issue
 db.on("error", function (error) {
-    console.log("Database Error:", error);
+    console.log("MongoDB Connection Error. Make sure MongoDB is running.", error);
 });
+
+// Once logged in to the db through mongoose, log a success message
+db.once("open", function () {
+    console.log("Mongoose connection successful.");
+});
+
+var NewsSchema = new mongoose.Schema({
+    title: String,
+    summary: String
+});
+
+db.collections.insert({title: 'randommmmm', summary: "more random"});
+//// TESTING AGAIN
+// ==============================================
+
+
+
+
+// ====================================================================
+// ====================================================================
+// ====================================================================
+// ====================================================================
+// ====================================================================
+// ====================================================================
+// ====================================================================
+
+
+
+// Database configuration
+// var databaseUrl = "news";
+// var collections = ["articles"];
+
+/*
+// Database configuration with mongoose
+mongoose.connect("mongodb://localhost/news");
+var db = mongoose.connection;
+
+// This makes sure that any errors are logged if mongodb runs into an issue
+db.on("error", function (error) {
+    console.log("MongoDB Connection Error. Make sure MongoDB is running.", error);
+});
+
+// Once logged in to the db through mongoose, log a success message
+db.once("open", function () {
+    console.log("Mongoose connection successful.");
+});
+*/
 
 // Routes
 // 1. At the root path, send a simple hello world message to the browser
@@ -26,6 +132,7 @@ app.get("/", function (req, res) {
     res.sendfile(__dirname + '/public/index.html');
 });
 
+/*
 // 2. At the "/all" path, display every entry in the articles collection
 app.get("/all", function (req, res) {
     // Query: In our database, go to the articles collection, then "find" everything
@@ -78,6 +185,7 @@ app.get("/scrape", function (req, res) {
     res.send("Scrape Complete");
 });
 
+*/
 
 // Set the app to listen on port 3000
 app.listen(3000, function () {
