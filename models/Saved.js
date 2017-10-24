@@ -1,13 +1,14 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var FavoriteSchema = new mongoose.Schema({
+var SavedSchema = new mongoose.Schema({
     title: String,
-    summary: String
+    summary: String,
+    url: String
 });
 
 // create the Favorites model using the NewsSchema
-var Favorite = mongoose.model('Favorites', FavoriteSchema);
+var Saved = mongoose.model('Saved', SavedSchema);
 
 // export the Favorites model
-module.exports = Favorite;
+module.exports = Saved;

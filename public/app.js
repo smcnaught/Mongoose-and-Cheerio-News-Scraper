@@ -5,14 +5,15 @@ $(document).ready(function () {
     })
 
     function displayResults(articles) {
-        $(".mainContent").empty();
 
         articles.forEach(function (articles) {
             $(".mainContent").append(
 
-                "<div class='row titleAndButton'><div class='col'><h1><span class='articleTitle'>"
+                "<div class='row titleAndButton'><div class='col'><h1><span class='articleTitle'><a href='"
+                + articles.url +
+                "' target='_blank'>"
                 + articles.title +
-                "</span><button class='btn btn-success btnSave'>SAVE ARTICLE</button></h1></div></div><div class='row'><div class='col-xs-12'><p class='summary'>"
+                "</a></span><button class='btn btn-success btnSave'>SAVE ARTICLE</button></h1></div></div><div class='row'><div class='col-xs-12'><p class='summary'>"
                 + articles.summary +
                 "</p></div></div>"
 
@@ -20,20 +21,26 @@ $(document).ready(function () {
         });
     }
 
-    function displayFavorites(favorites) {
-        favorites.forEach(function (favorites) {
-            $('.favorites').append(
-                "<div class='row titleAndButton'><div class='col'><h1><span class='articleTitle'>"
-                + favorites.title +
-                "</span></h1></div></div><div class='row'><div class='col-xs-12'><p class='summary'>"
-                + favorites.summary +
+    function displaySaved(savedArt) {
+        savedArt.forEach(function (savedArt) {
+            $('.savedContent').append(
+                "<div class='row titleAndButton'><div class='col'><h1><span class='articleTitle'><a href='"
+                + savedArt.url +
+                "' target='_blank'>"
+                + savedArt.title +
+                "</a></span><button class='btn btn-success btnDelete'>DELETE FROM SAVED</button><button class='btn btn-success btnNotes'>ARTICLE NOTES</button></h1></div></div><div class='row'><div class='col-xs-12'><p class='summary'>"
+                + savedArt.summary +
                 "</p></div></div>"
             );
         });
-    }
+    };
 
     $.getJSON("/all", function (data) {
         displayResults(data);
+    });
+
+    $.getJSON('/saved', function(data){
+        displaySaved(data);
     });
 
     // When the user clicks "Scrape New Articles", display the articles from NYT
@@ -44,12 +51,13 @@ $(document).ready(function () {
     });
 
     // When the user clicks "Save Article", save their article to the db. 
-    $('.mainContent').on("click", '.btnSave', function () {
-        console.log('This article will be saved to your articles!');
-        console.log($('.btnSave').html());
-        $.getJSON("/favorite", function(data){
-            displayFavorites(data);
-        });
-    });
+    // $('.mainContent').on("click", '.btnSave', function () {
+    //     console.log('This article will be saved to your articles!');
+    //     console.log($('.articleTitle').html());
+    //     $.post('/', function(data){
+    //         console.log(data);
+    //     });
+
+    // });
 
 });

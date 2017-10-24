@@ -3,7 +3,8 @@ var Schema = mongoose.Schema;
 
 var ArticleSchema = new mongoose.Schema({
     title: String,
-    summary: String
+    summary: String,
+    url: String
 });
 
 // create the Article model using the NewsSchema

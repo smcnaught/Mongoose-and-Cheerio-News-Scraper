@@ -1,0 +1,75 @@
+<html>
+    
+    <head>
+        <title>MongoCheerio!</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+    
+        <!-- My CSS -->
+        <link rel="stylesheet" href="style.css">
+    
+        <!-- My JavaScript -->
+        <script src="app.js"></script>
+    </head>
+    
+    <body>
+        <nav class="navbar navbar-light" style="background-color: #0994f7;">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand header" href="/">Mongo Scraper</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="/" class="header" id="homeBtn">Home</a>
+                    </li>
+                    <li>
+                        <a href="#" class="header" id="savedBtn">Saved Articles</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <button class="btn btn-danger header" id="scraper">SCRAPE NEW ARTICLES!</button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="modal fade">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h3 class="modal-title"></h3>
+                    </div>
+                    <div class="modal-body">
+                        <p class="modalContent">Added 20 new articles!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="imgContainer">
+                    <img src="news.jpg" alt="Newspaper Picture">
+                    <div class="centered">MONGO SCRAPER</div>
+                    <div class="centeredBelow">NEW YORK TIMES EDITION</div>
+                </div>
+            </div>
+        </div>
+        <div class="savedContent"></div>
+    </body>
+    
+    </html>

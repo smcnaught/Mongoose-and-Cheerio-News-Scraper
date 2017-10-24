@@ -62,7 +62,7 @@ img {
 }
 
 .articleTitle {
-    color: white;
+    color: white !important;
     padding-left: 12px;
     font-size: 32px;
 }
@@ -76,4 +76,13 @@ img {
 .btnSave {
     float: right;
     margin-right: 20px;
+}
+
+a{
+    color: white;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: white;
 }
