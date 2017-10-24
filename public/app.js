@@ -50,14 +50,21 @@ $(document).ready(function () {
         });
     });
 
-    // When the user clicks "Save Article", save their article to the db. 
-    // $('.mainContent').on("click", '.btnSave', function () {
-    //     console.log('This article will be saved to your articles!');
-    //     console.log($('.articleTitle').html());
-    //     $.post('/', function(data){
-    //         console.log(data);
-    //     });
+    // When the user clicks "my saved articles, go to the page with their saved articles from the db."
+    $('.nav').on("click", '#savedBtn', function (){
+        $.getJSON("/saved", function (data) {
+            displaySaved(data);
+        });
+    })
 
-    // });
+    // When the user clicks "Save Article", save their article to the db. 
+    $('.mainContent').on("click", '.btnSave', function () {
+        console.log('This article will be saved to your articles!');
+        console.log($('.articleTitle').html());
+        $.post('/', function(data){
+            console.log(data);
+        });
+
+    });
 
 });

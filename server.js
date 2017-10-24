@@ -7,12 +7,12 @@ var mongoose = require('mongoose');
 var mongojs = require("mongojs");
 var bodyParser = require('body-parser');
 
+// Initialize Express
+var app = express();
+
 // Require models.
 var Article = require('./models/Article.js');
 var Saved = require('./models/Saved.js');
-
-// Initialize Express
-var app = express();
 
 // BodyParser makes it possible for our server to interpret data sent to it.
 // The code below is pretty standard.
@@ -45,7 +45,7 @@ app.get("/", function (req, res) {
     res.sendfile(__dirname + '/public/index.html');
 });
 
-app.get('/saved', function(req, res){
+app.get('/saved', function (req, res) {
     res.sendFile(__dirname + '/public/saved.html');
 });
 
@@ -119,20 +119,23 @@ app.get("/scrape", function (req, res) {
     res.send("Scrape Complete");
 });
 
-// app.post('/', function(request, response){
-//     var art = new Article({
-//         title: req.body.title,
-//         summary: req.body.summary,
-//         url: req.body.url
-//     });
+app.post('/', function (req, res) {
+    var art = new Article({
+        title: req.body.title,
+        summary: req.body.summary,
+        url: req.body.url
+    });
 
-//     art.save(function(err, art){
-//         if(err){
-//             return console.log(err);
-//         }
-//     });
-//     res.send('Saved Article');
-// })
+    art.save(function (err, art) {
+        if (err) {
+            return console.log('error:', err);
+        } else{
+            console.log('New article saved', art);
+        }
+    });
+    res.send('Saved Article');
+    // console.log('this is the req.body!!!', req.body);
+})
 
 // Set the app to listen on port 3000
 app.listen(3000, function () {
