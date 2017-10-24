@@ -66,7 +66,7 @@ app.get("/all", function (req, res) {
 
 // At the "/saved" path, display all the saved articles.
 app.get("/saved", function (req, res) {
-    // Query: In our database, go to the articles collection, then "find" everything
+    // Query: In our database, go to the saved collection, then "find" everything
     Saved.find({}, function (error, found) {
         // Log any errors if the server encounters one
         if (error) {
