@@ -1,5 +1,10 @@
+html{
+    position: relative;
+    min-height: 100%;
+}
 body {
     background-color: rgb(214, 214, 209);
+    margin: 0 0 100px;
 }
 .mainContent {
     margin: 10px;
@@ -127,4 +132,69 @@ a{
 a.titleHover:hover {
     text-decoration: underline;
     color: white;
+}
+
+.savedContent {
+    margin: 20px 10px;
+}
+
+#noSavedArt{
+    float: left;
+    background-color: #ff9800;
+    min-width:100%;
+    margin-left: 0px;
+    color: white !important;
+    padding: 8px 0px 18px 12px;
+    font-size: 25px;
+    margin-bottom: 20px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+#browsePar{
+    float: left;
+    background-color: dodgerblue;
+    min-width:100%;
+    margin-left: 0px;
+    color: white !important;
+    padding: 33px 0px 25px 12px;
+    font-size: 32px;
+    margin-bottom: 0px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+#browseLink{
+    float: left;
+    background-color: white;
+    min-width:100%;
+    margin-left: 0px;
+    color: dodgerblue !important;
+    padding: 21px 0px 24px 12px;
+    font-size: 23px;
+    margin-bottom: 20px;
+    margin-top: 0px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+#browseArtLink{
+    color: dodgerblue !important;
+    text-decoration: none;
+}
+
+.footer{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 80px;
+    width: 100%;
+    background-color: dodgerblue;
+}
+
+#footerText{
+    background-color:#1873cc;
+    color: white;
+    padding: 10px;
+    margin-top: 39px;
 }
