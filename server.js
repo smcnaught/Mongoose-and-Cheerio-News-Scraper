@@ -119,10 +119,6 @@ app.get("/scrape", function (req, res) {
     res.send("Scrape Complete");
 });
 
-// app.get("/favorite", function (req, res) {
-//     res.send("Added to Favorites");
-// })
-
 // app.post('/', function(request, response){
 //     var art = new Article({
 //         title: req.body.title,
