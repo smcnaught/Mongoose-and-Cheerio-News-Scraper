@@ -11,7 +11,7 @@ $(document).ready(function () {
 
                 "<div class='row titleAndButton'><div class='col'><h1><span class='articleTitle'><a href='"
                 + articles.url +
-                "' target='_blank'>"
+                "' target='_blank' class='titleHover'>"
                 + articles.title +
                 "</a></span><button class='btn btn-success btnSave'>SAVE ARTICLE</button></h1></div></div><div class='row'><div class='col-xs-12'><p class='summary'>"
                 + articles.summary +

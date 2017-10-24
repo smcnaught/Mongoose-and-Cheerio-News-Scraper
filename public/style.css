@@ -5,7 +5,53 @@ body {
     margin: 10px;
 }
 .header {
-    color: white;
+    color: b2dbfb;
+}
+
+#pageTitle:hover{
+    color: #ffffff;
+}
+
+#pageTitle{
+    font-size: 24px;
+    padding: 20px 15px 0px 15px;
+    margin-top: 6px;
+}
+#homeBtn{
+    background-color: #1873cc;
+    padding: 30px 18px;
+}
+#homeBtn:hover {
+    color: #ffffff;
+    background-color: #1873cc;
+}
+
+#savedBtn:hover{
+    color: #ffffff;
+    background-color: dodgerblue;
+}
+
+#savedBtn{
+    padding: 30px 18px;
+}
+
+#scraper:hover{
+    background-color: #4caf50;
+    border:none;
+
+}
+
+#scraper{
+    background-color: #cb171e;
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 12px;
+    padding: 15px 10px;
+
+}
+
+#scrapeBackground:hover{
+    background-color: dodgerblue;
 }
 
 .navbar {
@@ -49,10 +95,6 @@ img {
     font-size: 20px;
 }
 
-#openModal:hover {
-    background-color: rgb(2, 51, 2) !important;
-}
-
 .titleAndButton {
     float: left;
     background-color: dodgerblue;
@@ -82,7 +124,7 @@ a{
     color: white;
 }
 
-a:hover {
+a.titleHover:hover {
     text-decoration: underline;
     color: white;
 }
