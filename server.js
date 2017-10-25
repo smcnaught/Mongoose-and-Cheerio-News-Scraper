@@ -7,12 +7,15 @@ var mongoose = require('mongoose');
 var mongojs = require("mongojs");
 var bodyParser = require('body-parser');
 
+// mongoose mpromise deprecated - use bluebird promises
+var Promise = require("bluebird");
+
 // Initialize Express
 var app = express();
 
 // Require models.
 var Article = require('./models/Article.js');
-var Saved = require('./models/Saved.js');
+// var Saved = require('./models/Saved.js');
 
 // BodyParser makes it possible for our server to interpret data sent to it.
 // The code below is pretty standard.
@@ -119,22 +122,29 @@ app.get("/scrape", function (req, res) {
     res.send("Scrape Complete");
 });
 
-app.post('/', function (req, res) {
-    var art = new Article({
-        title: req.body.title,
-        summary: req.body.summary,
-        url: req.body.url
-    });
+// app.post('/', function (req, res) {
+//     var art = new Article({
+//         title: req.body.title,
+//         summary: req.body.summary,
+//         url: req.body.url
+//     });
 
-    art.save(function (err, art) {
-        if (err) {
-            return console.log('error:', err);
-        } else{
-            console.log('New article saved', art);
-        }
-    });
-    res.send('Saved Article');
-    // console.log('this is the req.body!!!', req.body);
+//     art.save(function (err, art) {
+//         if (err) {
+//             return console.log('error:', err);
+//         } else{
+//             console.log('New article saved', art);
+//         }
+//     });
+//     res.send('Saved Article');
+//     // console.log('this is the req.body!!!', req.body);
+// })
+
+
+app.put('/save', function (req, res){
+    var saved = req.saved;
+    saved = true;
+
 })
 
 // Set the app to listen on port 3000

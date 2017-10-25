@@ -37,6 +37,29 @@ $(document).ready(function () {
         });
     };
 
+    // Function that runs when a user clicks the "save article" button.
+    function articleSave(){
+    // get the data-id attribute we assigned initially.
+    var articleBeingSaved = $('.btnSave').data();
+
+    // changed the intial value of saved=false to true.
+    articleBeingSaved.saved = true;
+
+    // Using an ajax put method.
+    $.ajax({
+      method: "PUT",
+      url: "/save",
+      data: articleBeingSaved
+    }).then(function(data) {
+      // If successful, mongoose will send back an object containing a key of "ok" with the value of 1
+      // (which casts to 'true')
+      if (data.ok) {
+        // location.reload();
+        console.log('The update worked - your article has been saved');
+      }
+    });
+    }
+
     $.getJSON("/all", function (data) {
         displayResults(data);
     });
@@ -57,16 +80,19 @@ $(document).ready(function () {
         $.getJSON("/saved", function (data) {
             displaySaved(data);
         });
-    })
-
+    });    
+    
+    
     // When the user clicks "Save Article", save their article to the db. 
     $('.mainContent').on("click", '.btnSave', function () {
+        articleSave();
         console.log('This article will be saved to your articles!');
-        console.log($('.articleTitle').html());
-        $.post('/', function(data){
-            console.log(data);
-        });
-
+        // console.log($('.btnSave'));
+        // console.log($('.btnSave').data({ depth: 1}));
+        // console.log($('.btnSave').data());
+        
     });
+
+
 
 });
