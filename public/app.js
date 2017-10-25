@@ -13,7 +13,9 @@ $(document).ready(function () {
                 + articles.url +
                 "' target='_blank' class='titleHover'>"
                 + articles.title +
-                "</a></span><button class='btn btn-success btnSave'>SAVE ARTICLE</button></h1></div></div><div class='row'><div class='col-xs-12'><p class='summary'>"
+                "</a></span><button class='btn btn-success btnSave' data-id="
+                + articles._id +
+                ">SAVE ARTICLE</button></h1></div></div><div class='row'><div class='col-xs-12'><p class='summary'>"
                 + articles.summary +
                 "</p></div></div>"
 

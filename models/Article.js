@@ -4,7 +4,11 @@ const Schema = mongoose.Schema;
 const ArticleSchema = new mongoose.Schema({
     title: String,
     summary: String,
-    url: String
+    url: String,
+    saved: {
+        type: Boolean,
+        default: false
+    }
 });
 
 // create the Article model using the NewsSchema
