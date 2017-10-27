@@ -81,16 +81,16 @@ img {
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: 'Merriweather', serif;
-    font-size: 42px;
+    font-size: 66px;
 }
 
 .centeredBelow {
     position: absolute;
-    top: 45%;
+    top: 51%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: 'Merriweather', serif;
-    font-size: 15px;
+    font-size: 27px;
     letter-spacing: 3px;
 }
 
