@@ -47,8 +47,7 @@ $(document).ready(function () {
     }
 
     function displaySaved(savedArticles) {
-        savedArticles.forEach(function (savedArt) {
-            console.log(savedArt);
+        savedArticles.forEach(function (savedArt) {            
             $('.savedContent').append(
                 "<div class='row titleAndButton'><div class='col'><h1><span class='articleTitle'><a href='"
                 + savedArt.url +
@@ -66,10 +65,6 @@ $(document).ready(function () {
         displayResults(data);
     });
 
-    // $.getJSON('/saved', function(data){
-    //     displaySaved(data);
-    // });
-
     // When the user clicks "Scrape New Articles", display the articles from NYT
     $('#scraper').on("click", function () {
         $.getJSON("/scrape", function (data) {
@@ -85,6 +80,9 @@ $(document).ready(function () {
         });
     });
 
+    $.get("/getSavedArticles", function (data) {
+        displaySaved(data);
+    });
 
     // When the user clicks "Save Article", save their article to the db. 
     $('.mainContent').on("click", '.btnSave', function () {

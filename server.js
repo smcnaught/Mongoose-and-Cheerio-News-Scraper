@@ -67,11 +67,16 @@ app.get("/all", function (req, res) {
     });
 });
 
-// At the "/saved" path, display all the saved articles.
+// app.get('/saved', function (req, res) {
+//     res.sendFile(__dirname + '/public/saved.html');
+// });
+
+// At the "/getSavedArticles" path, display all the saved articles.
 app.get("/getSavedArticles", function (req, res) {
     // Query: In our database, go to the saved collection, then "find" everything
-    Saved.find({}, function (error, found) {
+    Article.find({saved: true}, function (error, found) {
         // Log any errors if the server encounters one
+        console.log(found);
         if (error) {
             console.log(error);
         }
@@ -80,6 +85,7 @@ app.get("/getSavedArticles", function (req, res) {
             res.json(found);
         }
     });
+
 });
 
 // Scrape data from one site and place it into the mongodb db
@@ -143,7 +149,16 @@ app.get("/scrape", function (req, res) {
 
 app.put('/save', function (req, res){
     console.log(req.body);  
-
+    // console.log(db.collections.articles);
+    Article.update(
+        {_id: req.body.id},
+        {        
+            saved: true
+        
+    },function(err, res){
+        console.log(err, res);
+    }
+    )
 });
 
 // Set the app to listen on port 3000
