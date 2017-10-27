@@ -46,7 +46,6 @@ function articleDelete(mythis) {
     })
 
     function displayResults(articles) {
-
         articles.forEach(function (articles) {
             $(".mainContent").append(
 
