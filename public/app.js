@@ -23,8 +23,9 @@ $(document).ready(function () {
         });
     }
 
-    function displaySaved(savedArt) {
-        savedArt.forEach(function (savedArt) {
+    function displaySaved(savedArticles) {
+        savedArticles.forEach(function (savedArt) {
+            console.log(savedArt);
             $('.savedContent').append(
                 "<div class='row titleAndButton'><div class='col'><h1><span class='articleTitle'><a href='"
                 + savedArt.url +
@@ -38,9 +39,10 @@ $(document).ready(function () {
     };
 
     // Function that runs when a user clicks the "save article" button.
-    function articleSave(){
+    function articleSave(mythis){
     // get the data-id attribute we assigned initially.
-    var articleBeingSaved = $('.btnSave').data();
+    var articleBeingSaved = mythis.data();
+    console.log('im article save and this is the the btn data id', articleBeingSaved);
 
     // changed the intial value of saved=false to true.
     articleBeingSaved.saved = true;
@@ -64,9 +66,9 @@ $(document).ready(function () {
         displayResults(data);
     });
 
-    $.getJSON('/saved', function(data){
-        displaySaved(data);
-    });
+    // $.getJSON('/saved', function(data){
+    //     displaySaved(data);
+    // });
 
     // When the user clicks "Scrape New Articles", display the articles from NYT
     $('#scraper').on("click", function () {
@@ -76,8 +78,9 @@ $(document).ready(function () {
     });
 
     // When the user clicks "my saved articles, go to the page with their saved articles from the db."
-    $('.nav').on("click", '#savedBtn', function (){
-        $.getJSON("/saved", function (data) {
+    $('#savedBtn').on("click", function (){
+        console.log("data");
+        $.get("/getSavedArticles", function (data) {
             displaySaved(data);
         });
     });    
@@ -85,7 +88,8 @@ $(document).ready(function () {
     
     // When the user clicks "Save Article", save their article to the db. 
     $('.mainContent').on("click", '.btnSave', function () {
-        articleSave();
+        var mythis = $(this);
+        articleSave(mythis);
         console.log('This article will be saved to your articles!');
         // console.log($('.btnSave'));
         // console.log($('.btnSave').data({ depth: 1}));

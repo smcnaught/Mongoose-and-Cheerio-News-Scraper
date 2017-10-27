@@ -68,7 +68,7 @@ app.get("/all", function (req, res) {
 });
 
 // At the "/saved" path, display all the saved articles.
-app.get("/saved", function (req, res) {
+app.get("/getSavedArticles", function (req, res) {
     // Query: In our database, go to the saved collection, then "find" everything
     Saved.find({}, function (error, found) {
         // Log any errors if the server encounters one
@@ -142,10 +142,9 @@ app.get("/scrape", function (req, res) {
 
 
 app.put('/save', function (req, res){
-    var saved = req.saved;
-    saved = true;
+    console.log(req.body);  
 
-})
+});
 
 // Set the app to listen on port 3000
 app.listen(3000, function () {
