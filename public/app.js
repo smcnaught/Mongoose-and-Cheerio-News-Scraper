@@ -41,12 +41,12 @@ $(document).ready(function () {
     }
     
     // Function that runs when a user clicks the "Article Notes" button.
-    function addNote(mythis) {
+    function addNote(mythis, userNote) {
         // get the data-id attribute we assigned initially.
         var addingNote = mythis.data();
     
         // Add a note to the database.
-        addingNote.note = 'there will be a note here';
+        addingNote.note = userNote;
     
         // Using an ajax put method.
         $.ajax({
@@ -139,9 +139,10 @@ $(document).ready(function () {
 
     // When the user clicks "DELETE FROM SAVED", change saved status to false.. 
     $('.savedContent').on("click", '.btnNotes', function () {
+        var userNote = prompt("please enter your note"); 
+        console.log(userNote);
         var mythis = $(this);
-        addNote(mythis);
-        console.log(mythis);
+        addNote(mythis, userNote);
     });
 
 
