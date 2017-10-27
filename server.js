@@ -125,7 +125,6 @@ app.get("/scrape", function (req, res) {
 
 app.put('/save', function (req, res){
     console.log(req.body);  
-    // console.log(db.collections.articles);
     Article.update(
         {_id: req.body.id},
         {        
@@ -136,6 +135,21 @@ app.put('/save', function (req, res){
     }
     )
 });
+
+app.put('/delete', function (req, res){
+    console.log(req.body);  
+    Article.update(
+        {_id: req.body.id},
+        {        
+            saved: false
+        
+    },function(err, res){
+        console.log(err, res);
+    }
+    )
+});
+
+
 
 // Set the app to listen on port 3000
 app.listen(3000, function () {
