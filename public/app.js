@@ -1,4 +1,27 @@
 $(document).ready(function () {
+    // Function that runs when a user clicks the "save article" button.
+    function articleSave(mythis) {
+        // get the data-id attribute we assigned initially.
+        var articleBeingSaved = mythis.data();
+        console.log('im article save and this is the the btn data id', articleBeingSaved);
+
+        // changed the intial value of saved=false to true.
+        articleBeingSaved.saved = true;
+
+        // Using an ajax put method.
+        $.ajax({
+            method: "PUT",
+            url: "/save",
+            data: articleBeingSaved
+        }).then(function (data) {
+            if (data.ok) {
+                // location.reload();
+                console.log('The update worked - your article has been saved');
+            }
+        });
+    }
+
+
     $('#openModal').click(function () {
         $('.modal').modal('show');
         $('body').removeClass("modal-open");
@@ -38,29 +61,6 @@ $(document).ready(function () {
         });
     };
 
-    // Function that runs when a user clicks the "save article" button.
-    function articleSave(mythis){
-    // get the data-id attribute we assigned initially.
-    var articleBeingSaved = mythis.data();
-    console.log('im article save and this is the the btn data id', articleBeingSaved);
-
-    // changed the intial value of saved=false to true.
-    articleBeingSaved.saved = true;
-
-    // Using an ajax put method.
-    $.ajax({
-      method: "PUT",
-      url: "/save",
-      data: articleBeingSaved
-    }).then(function(data) {
-      // If successful, mongoose will send back an object containing a key of "ok" with the value of 1
-      // (which casts to 'true')
-      if (data.ok) {
-        // location.reload();
-        console.log('The update worked - your article has been saved');
-      }
-    });
-    }
 
     $.getJSON("/all", function (data) {
         displayResults(data);
@@ -78,25 +78,17 @@ $(document).ready(function () {
     });
 
     // When the user clicks "my saved articles, go to the page with their saved articles from the db."
-    $('#savedBtn').on("click", function (){
+    $('#savedBtn').on("click", function () {
         console.log("data");
         $.get("/getSavedArticles", function (data) {
             displaySaved(data);
         });
-    });    
-    
-    
+    });
+
+
     // When the user clicks "Save Article", save their article to the db. 
     $('.mainContent').on("click", '.btnSave', function () {
         var mythis = $(this);
         articleSave(mythis);
-        console.log('This article will be saved to your articles!');
-        // console.log($('.btnSave'));
-        // console.log($('.btnSave').data({ depth: 1}));
-        // console.log($('.btnSave').data());
-        
     });
-
-
-
 });
