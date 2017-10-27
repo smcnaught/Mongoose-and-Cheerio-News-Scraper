@@ -3,7 +3,6 @@ $(document).ready(function () {
     function articleSave(mythis) {
         // get the data-id attribute we assigned initially.
         var articleBeingSaved = mythis.data();
-        console.log('im article save and this is the the btn data id', articleBeingSaved);
 
         // changed the intial value of saved=false to true.
         articleBeingSaved.saved = true;
@@ -15,8 +14,7 @@ $(document).ready(function () {
             data: articleBeingSaved
         }).then(function (data) {
             if (data.ok) {
-                // location.reload();
-                console.log('The update worked - your article has been saved');
+                console.log('Your article has been saved');
             }
         });
     }
@@ -74,7 +72,6 @@ $(document).ready(function () {
 
     // When the user clicks "my saved articles, go to the page with their saved articles from the db."
     $('#savedBtn').on("click", function () {
-        console.log("data");
         $.get("/getSavedArticles", function (data) {
             displaySaved(data);
         });

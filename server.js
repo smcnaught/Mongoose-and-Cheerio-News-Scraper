@@ -15,7 +15,6 @@ var app = express();
 
 // Require models.
 var Article = require('./models/Article.js');
-// var Saved = require('./models/Saved.js');
 
 // BodyParser makes it possible for our server to interpret data sent to it.
 // The code below is pretty standard.
@@ -26,23 +25,6 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 var databaseUrl = "news";
 var collections = ["articles", "saved"];
-
-var MongoClient = mongodb.MongoClient;
-var url = 'mongodb://localhost/news';
-
-MongoClient.connect(url, function(err, db){
-    if (err) {
-        console.log('Unable to connect to the mongoDB server. Error:', err);
-      } else {
-        console.log('Connection established to', url);
-    
-        // do some work here with the database.
-    
-        //Close connection
-        db.close();
-      }
-})
-
 
 // Database configuration with mongoose
 mongoose.connect("mongodb://localhost/news");
@@ -83,10 +65,6 @@ app.get("/all", function (req, res) {
         }
     });
 });
-
-// app.get('/saved', function (req, res) {
-//     res.sendFile(__dirname + '/public/saved.html');
-// });
 
 // At the "/getSavedArticles" path, display all the saved articles.
 app.get("/getSavedArticles", function (req, res) {
@@ -144,25 +122,6 @@ app.get("/scrape", function (req, res) {
     // Send a "Scrape Complete" message to the browser
     res.send("Scrape Complete");
 });
-
-// app.post('/', function (req, res) {
-//     var art = new Article({
-//         title: req.body.title,
-//         summary: req.body.summary,
-//         url: req.body.url
-//     });
-
-//     art.save(function (err, art) {
-//         if (err) {
-//             return console.log('error:', err);
-//         } else{
-//             console.log('New article saved', art);
-//         }
-//     });
-//     res.send('Saved Article');
-//     // console.log('this is the req.body!!!', req.body);
-// })
-
 
 app.put('/save', function (req, res){
     console.log(req.body);  
