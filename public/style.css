@@ -199,7 +199,16 @@ a.titleHover:hover {
     margin-top: 39px;
 }
 
-.btn-success {
+.savedBtns {
     float: right;
     margin-right: 10px;
+}
+
+.btnNotes{
+    background-color: #9c27b0;
+    border-color: #9c27b0;
+}
+
+.btn-danger{
+    background-color: #e51c23;
 }

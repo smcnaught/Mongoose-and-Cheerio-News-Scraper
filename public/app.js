@@ -91,9 +91,9 @@ $(document).ready(function () {
                 + savedArt.url +
                 "' target='_blank'>"
                 + savedArt.title +
-                "</a></span><button class='btn btn-success btnDelete' data-id="
+                "</a></span><button class='btn btn-danger savedBtns btnDelete' data-id="
                 + savedArt._id +
-                ">DELETE FROM SAVED</button><button class='btn btn-success btnNotes' data-id="
+                ">DELETE FROM SAVED</button><button class='btn btn-success savedBtns btnNotes' data-id="
                 + savedArt._id +
                 ">ARTICLE NOTES</button></h1></div></div><div class='row'><div class='col-xs-12'><p class='summary'>"
                 + savedArt.summary +
@@ -139,7 +139,7 @@ $(document).ready(function () {
 
     // When the user clicks "DELETE FROM SAVED", change saved status to false.. 
     $('.savedContent').on("click", '.btnNotes', function () {
-        var userNote = prompt("please enter your note"); 
+        var userNote = prompt("Please enter your note"); 
         console.log(userNote);
         var mythis = $(this);
         addNote(mythis, userNote);
