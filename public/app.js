@@ -45,6 +45,7 @@ $(document).ready(function () {
     }
 
     function displaySaved(savedArticles) {
+        $('.deleteOnSave').empty();
         savedArticles.forEach(function (savedArt) {            
             $('.savedContent').append(
                 "<div class='row titleAndButton'><div class='col'><h1><span class='articleTitle'><a href='"
