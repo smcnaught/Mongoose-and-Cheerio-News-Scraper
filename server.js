@@ -27,21 +27,21 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 var databaseUrl = "news";
 var collections = ["articles", "saved"];
 
-// var MongoClient = mongodb.MongoClient;
-// var url = 'mongodb://localhost/news';
+var MongoClient = mongodb.MongoClient;
+var url = 'mongodb://localhost/news';
 
-// MongoClient.connect(url, function(err, db){
-//     if (err) {
-//         console.log('Unable to connect to the mongoDB server. Error:', err);
-//       } else {
-//         console.log('Connection established to', url);
+MongoClient.connect(url, function(err, db){
+    if (err) {
+        console.log('Unable to connect to the mongoDB server. Error:', err);
+      } else {
+        console.log('Connection established to', url);
     
-//         // do some work here with the database.
+        // do some work here with the database.
     
-//         //Close connection
-//         db.close();
-//       }
-// })
+        //Close connection
+        db.close();
+      }
+})
 
 
 // Database configuration with mongoose
