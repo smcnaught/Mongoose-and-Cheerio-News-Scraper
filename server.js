@@ -149,6 +149,19 @@ app.put('/delete', function (req, res){
     )
 });
 
+app.put('/addNote', function (req, res){
+    console.log('req.body.id: ', req.body.id);  
+    Article.update(
+        {_id: req.body.id},
+        {        
+            note: req.body.note
+        
+    },function(err, res){
+        console.log(err, res);
+    }
+    )
+});
+
 
 
 // Set the app to listen on port 3000
