@@ -27,7 +27,13 @@ var databaseUrl = "news";
 var collections = ["articles", "saved"];
 
 // Database configuration with mongoose
-mongoose.connect("mongodb://localhost/news");
+if(process.env.NODE_ENV == 'production'){
+	mongoose.connect('MONGODB_URI: mongodb://heroku_g7415hn3:8ovuq9sl84732ur82fa49iftog@ds235785.mlab.com:35785/heroku_g7415hn3');
+}
+else{
+	mongoose.connect("mongodb://localhost/news");
+}
+
 var db = mongoose.connection;
 
 // f 
