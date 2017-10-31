@@ -28,7 +28,7 @@ var collections = ["articles", "saved"];
 
 // Database configuration with mongoose
 if(process.env.NODE_ENV == 'production'){
-	mongoose.connect('MONGODB_URI: mongodb://heroku_g7415hn3:8ovuq9sl84732ur82fa49iftog@ds235785.mlab.com:35785/heroku_g7415hn3');
+    mongoose.connect('MONGODB_URI: mongodb://heroku_d2zc0vzv: 9j6kh7l49jnvtsirmam2rttkl8@ds243335.mlab.com: 43335 / heroku_d2zc0vzv');
 }
 else{
 	mongoose.connect("mongodb://localhost/news");
