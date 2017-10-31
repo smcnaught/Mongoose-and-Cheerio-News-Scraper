@@ -110,7 +110,7 @@ app.get("/scrape", function (req, res) {
                 summary: summary,
                 url: url
             }
-            console.log('THIS IS THE URL=========', result.url);
+            console.log('THIS IS THE URL, title, and summary =========', result.url, result.title, result,summary);
             // If this found element had both a title and a summary
             if (title && summary && url) {
                 // Insert the data in the articles db
