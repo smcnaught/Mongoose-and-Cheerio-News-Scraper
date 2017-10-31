@@ -33,6 +33,7 @@ mongoose.connect(mongoDB_URI);
 var db = mongoose.connection;
 
 db.on("error", function (error) {
+    console.log('this is the mongoDB_URI', mongoDB_URI);
     console.log("Mongoose Error. Make sure MongoDB is running.", error);
 });
 
