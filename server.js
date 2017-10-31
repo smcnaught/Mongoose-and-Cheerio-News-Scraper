@@ -6,7 +6,7 @@ var handlebars = require('express-handlebars');
 var mongoose = require('mongoose');
 var mongojs = require("mongojs");
 var bodyParser = require('body-parser');
-var mongoDB_URI = process.env.mongoDB_URI || 'mongodb://localhost/news';
+var mongoDB_URI = process.env.mongoDB_URI;
 
 
 // mongoose mpromise deprecated - use bluebird promises
