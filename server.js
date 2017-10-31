@@ -60,11 +60,11 @@ app.get("/all", function (req, res) {
     Article.find({}, function (error, found) {
         // Log any errors if the server encounters one
         if (error) {
-            console.log('THIS IS THE REQUEST ERROR FOR THE ALL PATH: ', error);
+            console.log('******************************************************************************THIS IS THE REQUEST ERROR FOR THE ALL PATH: ', error);
         }
         // Otherwise, send the result of this query to the browser
         else {
-            res.json('THE ALL PATH REQUEST WAS SUCCESSFUL! ', found);
+            res.json('******************************************************************************THE ALL PATH REQUEST WAS SUCCESSFUL! ', found);
         }
     });
 });
@@ -76,11 +76,11 @@ app.get("/getSavedArticles", function (req, res) {
         // Log any errors if the server encounters one
         // console.log(found);
         if (error) {
-            console.log('THIS IS THE GET SAVED ARTICLES ERROR ', error);
+            console.log('******************************************************************************THIS IS THE GET SAVED ARTICLES ERROR ', error);
         }
         // Otherwise, send the result of this query to the browser
         else {
-            res.json('GET SAVED ARTICLES WAS SUCCESSFUL! ', found);
+            res.json('******************************************************************************GET SAVED ARTICLES WAS SUCCESSFUL! ', found);
         }
     });
 
@@ -113,9 +113,9 @@ app.get("/scrape", function (req, res) {
                 var scrapedArticle = new Article(result);
                 scrapedArticle.save(function (error, doc) {
                     if (error) {
-                        console.log("SCRAPE REQUEST ERROR, ", error);
+                        console.log("******************************************************************************SCRAPE REQUEST ERROR, ", error);
                     } else {
-                        console.log("ARTICLE SCRAPE WAS SUCCESSFUL! ", doc);
+                        console.log("******************************************************************************ARTICLE SCRAPE WAS SUCCESSFUL! ", doc);
                     }
                 })
             }
@@ -133,7 +133,7 @@ app.put('/save', function (req, res){
             saved: true
         
     },function(err, res){
-        console.log(err, res);
+            console.log('******************************************************************************THIS IS UNDER THE SAVE PATH: ' , err, res);
     }
     )
 });
