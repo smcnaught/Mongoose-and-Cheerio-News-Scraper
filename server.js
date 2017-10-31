@@ -4,7 +4,7 @@ var request = require('request');
 var express = require("express");
 var handlebars = require('express-handlebars');
 var mongoose = require('mongoose');
-var http = require('http');
+// var http = require('http');
 var mongojs = require("mongojs");
 var bodyParser = require('body-parser');
 
@@ -25,7 +25,7 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 var databaseUrl = "news";
-var collections = ["articles", "saved"];
+var collections = ["articles"];
 
 // Database configuration with mongoose
 if(process.env.NODE_ENV == 'production'){
