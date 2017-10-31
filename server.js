@@ -6,7 +6,7 @@ var handlebars = require('express-handlebars');
 var mongoose = require('mongoose');
 var mongojs = require("mongojs");
 var bodyParser = require('body-parser');
-var mongoDB = process.env.mongoDB_URI || 'mongodb://heroku_d2zc0vzv: 9j6kh7l49jnvtsirmam2rttkl8@ds243335.mlab.com: 43335 / heroku_d2zc0vzv';
+var mongoDB_URI = process.env.mongoDB_URI || 'mongodb://localhost/news';
 
 
 // mongoose mpromise deprecated - use bluebird promises
@@ -29,16 +29,17 @@ var databaseUrl = "news";
 var collections = ["articles"];
 
 // Database configuration with mongoose
-if(process.env.NODE_ENV == 'production'){
-    mongoose.connect('MONGODB_URI: mongodb://heroku_d2zc0vzv: 9j6kh7l49jnvtsirmam2rttkl8@ds243335.mlab.com: 43335 / heroku_d2zc0vzv');
-}
-else{
-	mongoose.connect("mongodb://localhost/news");
-}
+// if(process.env.NODE_ENV == 'production'){
+//     mongoose.connect('MONGODB_URI: mongodb://heroku_d2zc0vzv: 9j6kh7l49jnvtsirmam2rttkl8@ds243335.mlab.com: 43335 / heroku_d2zc0vzv');
+// }
+// else{
+// 	mongoose.connect("mongodb://localhost/news");
+// }
+
+mongoose.connect(mongoDB_URI);
 
 var db = mongoose.connection;
 
-// f 
 db.on("error", function (error) {
     console.log("Mongoose Error. Make sure MongoDB is running.", error);
 });
