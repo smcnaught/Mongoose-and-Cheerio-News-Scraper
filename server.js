@@ -28,14 +28,6 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 var databaseUrl = "news";
 var collections = ["articles"];
 
-// Database configuration with mongoose
-// if(process.env.NODE_ENV == 'production'){
-//     mongoose.connect('MONGODB_URI: mongodb://heroku_d2zc0vzv: 9j6kh7l49jnvtsirmam2rttkl8@ds243335.mlab.com: 43335 / heroku_d2zc0vzv');
-// }
-// else{
-// 	mongoose.connect("mongodb://localhost/news");
-// }
-
 mongoose.connect(mongoDB_URI);
 
 var db = mongoose.connection;
@@ -66,11 +58,11 @@ app.get("/all", function (req, res) {
     Article.find({}, function (error, found) {
         // Log any errors if the server encounters one
         if (error) {
-            console.log(error);
+            console.log('THIS IS THE REQUEST ERROR FOR THE ALL PATH: ', error);
         }
         // Otherwise, send the result of this query to the browser
         else {
-            res.json(found);
+            res.json('THE ALL PATH REQUEST WAS SUCCESSFUL! ', found);
         }
     });
 });
@@ -80,13 +72,13 @@ app.get("/getSavedArticles", function (req, res) {
     // Query: In our database, go to the saved collection, then "find" everything
     Article.find({saved: true}, function (error, found) {
         // Log any errors if the server encounters one
-        console.log(found);
+        // console.log(found);
         if (error) {
-            console.log(error);
+            console.log('THIS IS THE GET SAVED ARTICLES ERROR ', error);
         }
         // Otherwise, send the result of this query to the browser
         else {
-            res.json(found);
+            res.json('GET SAVED ARTICLES WAS SUCCESSFUL! ', found);
         }
     });
 
@@ -112,28 +104,27 @@ app.get("/scrape", function (req, res) {
                 summary: summary,
                 url: url
             }
-            console.log('THIS IS THE URL, title, and summary =========', result.url, result.title, result,summary);
+            // console.log('THIS IS THE URL, title, and summary =========', result.url, result.title, result,summary);
             // If this found element had both a title and a summary
             if (title && summary && url) {
                 // Insert the data in the articles db
                 var scrapedArticle = new Article(result);
                 scrapedArticle.save(function (error, doc) {
                     if (error) {
-                        console.log("error", error);
+                        console.log("SCRAPE REQUEST ERROR, ", error);
                     } else {
-                        console.log("new article scraped:", doc);
+                        console.log("ARTICLE SCRAPE WAS SUCCESSFUL! ", doc);
                     }
                 })
             }
         });
     });
-
     // Send a "Scrape Complete" message to the browser
     res.send("Scrape Complete");
 });
 
 app.put('/save', function (req, res){
-    console.log(req.body);  
+    // console.log(req.body);  
     Article.update(
         {_id: req.body.id},
         {        
@@ -146,7 +137,7 @@ app.put('/save', function (req, res){
 });
 
 app.put('/delete', function (req, res){
-    console.log(req.body);  
+    // console.log(req.body);  
     Article.update(
         {_id: req.body.id},
         {        
@@ -159,7 +150,7 @@ app.put('/delete', function (req, res){
 });
 
 app.put('/addNote', function (req, res){
-    console.log('req.body.id: ', req.body.id);  
+    // console.log('req.body.id: ', req.body.id);  
     Article.update(
         {_id: req.body.id},
         {        
