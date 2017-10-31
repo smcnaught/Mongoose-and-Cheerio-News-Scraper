@@ -29,7 +29,7 @@ var collections = ["articles"];
 
 // Database configuration with mongoose
 if(process.env.NODE_ENV == 'production'){
-    mongoose.connect('MONGOLAB_URI: mongodb://heroku_d2zc0vzv: 9j6kh7l49jnvtsirmam2rttkl8@ds243335.mlab.com: 43335 / heroku_d2zc0vzv');
+    mongoose.connect('MONGODB_URI: mongodb://heroku_d2zc0vzv: 9j6kh7l49jnvtsirmam2rttkl8@ds243335.mlab.com: 43335 / heroku_d2zc0vzv');
 }
 else{
 	mongoose.connect("mongodb://localhost/news");
