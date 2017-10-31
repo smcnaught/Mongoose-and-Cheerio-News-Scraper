@@ -12,10 +12,13 @@
     "url": "git+https://github.com/smcnaught/Mongoose-and-Cheerio-News-Scraper.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Stephanie McNaught",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/smcnaught/Mongoose-and-Cheerio-News-Scraper/issues"
+  },
+  "engines": {
+    "node": "6.11.3"
   },
   "homepage": "https://github.com/smcnaught/Mongoose-and-Cheerio-News-Scraper#readme",
   "dependencies": {
