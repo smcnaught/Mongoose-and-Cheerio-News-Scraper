@@ -6,7 +6,7 @@ var handlebars = require('express-handlebars');
 var mongoose = require('mongoose');
 var mongojs = require("mongojs");
 var bodyParser = require('body-parser');
-var mongoDB_URI = process.env.mongoLAB_URI;
+var mongoDB_URI = process.env.mongoDB_URI || 'mongodb://localhost/news';
 
 
 // mongoose mpromise deprecated - use bluebird promises
@@ -28,12 +28,24 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 var databaseUrl = "news";
 var collections = ["articles"];
 
-mongoose.connect(mongoDB_URI);
+if (process.env.MONGODB_URI) {
+    mongoose.connect(process.env.MONGODB_URI);
+
+} else {
+
+    mongoose.connect('mongodb://localhost/news', function (err) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('mongoose connection is successful');
+        }
+    });
+}
 
 var db = mongoose.connection;
 
 db.on("error", function (error) {
-    console.log('this is the mongoDB_URI', mongoDB_URI);
+    console.log('this is the mongoDB_URI', process.env.MONGODB_URI);
     console.log("Mongoose Error. Make sure MongoDB is running.", error);
 });
 
@@ -71,7 +83,7 @@ app.get("/all", function (req, res) {
 // At the "/getSavedArticles" path, display all the saved articles.
 app.get("/getSavedArticles", function (req, res) {
     // Query: In our database, go to the saved collection, then "find" everything
-    Article.find({saved: true}, function (error, found) {
+    Article.find({ saved: true }, function (error, found) {
         // Log any errors if the server encounters one
         // console.log(found);
         if (error) {
@@ -124,42 +136,42 @@ app.get("/scrape", function (req, res) {
     res.send("Scrape Complete");
 });
 
-app.put('/save', function (req, res){
+app.put('/save', function (req, res) {
     // console.log(req.body);  
     Article.update(
-        {_id: req.body.id},
-        {        
+        { _id: req.body.id },
+        {
             saved: true
-        
-    },function(err, res){
-        console.log(err, res);
-    }
+
+        }, function (err, res) {
+            console.log(err, res);
+        }
     )
 });
 
-app.put('/delete', function (req, res){
+app.put('/delete', function (req, res) {
     // console.log(req.body);  
     Article.update(
-        {_id: req.body.id},
-        {        
+        { _id: req.body.id },
+        {
             saved: false
-        
-    },function(err, res){
-        console.log(err, res);
-    }
+
+        }, function (err, res) {
+            console.log(err, res);
+        }
     )
 });
 
-app.put('/addNote', function (req, res){
+app.put('/addNote', function (req, res) {
     // console.log('req.body.id: ', req.body.id);  
     Article.update(
-        {_id: req.body.id},
-        {        
+        { _id: req.body.id },
+        {
             note: req.body.note
-        
-    },function(err, res){
-        console.log(err, res);
-    }
+
+        }, function (err, res) {
+            console.log(err, res);
+        }
     )
 });
 
