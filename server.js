@@ -4,9 +4,10 @@ var request = require('request');
 var express = require("express");
 var handlebars = require('express-handlebars');
 var mongoose = require('mongoose');
-// var http = require('http');
 var mongojs = require("mongojs");
 var bodyParser = require('body-parser');
+var mongoDB = process.env.mongoDB_URI || 'mongodb://heroku_d2zc0vzv: 9j6kh7l49jnvtsirmam2rttkl8@ds243335.mlab.com: 43335 / heroku_d2zc0vzv';
+
 
 // mongoose mpromise deprecated - use bluebird promises
 var Promise = require("bluebird");
@@ -98,7 +99,7 @@ app.get("/scrape", function (req, res) {
         // Load the html body from request into cheerio
         var $ = cheerio.load(html);
 
-        // For each element with a "title" class
+        // For each element with a "collection" class
         $(".collection").each(function (i, element) {
             // Save the title and summary of each article enclosed in the current element
             var title = $(element).children('article').children('h2').children('a').text();
