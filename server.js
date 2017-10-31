@@ -4,6 +4,7 @@ var request = require('request');
 var express = require("express");
 var handlebars = require('express-handlebars');
 var mongoose = require('mongoose');
+var http = require('http');
 var mongojs = require("mongojs");
 var bodyParser = require('body-parser');
 
@@ -27,12 +28,13 @@ var databaseUrl = "news";
 var collections = ["articles", "saved"];
 
 // Database configuration with mongoose
-if(process.env.NODE_ENV == 'production'){
-    mongoose.connect('MONGODB_URI: mongodb://heroku_d2zc0vzv: 9j6kh7l49jnvtsirmam2rttkl8@ds243335.mlab.com: 43335 / heroku_d2zc0vzv');
-}
-else{
-	mongoose.connect("mongodb://localhost/news");
-}
+// if(process.env.NODE_ENV == 'production'){
+//     mongoose.connect('MONGODB_URI: mongodb://heroku_d2zc0vzv: 9j6kh7l49jnvtsirmam2rttkl8@ds243335.mlab.com: 43335 / heroku_d2zc0vzv');
+// }
+// else{
+// 	mongoose.connect("mongodb://localhost/news");
+// }
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/news');
 
 var db = mongoose.connection;
 
