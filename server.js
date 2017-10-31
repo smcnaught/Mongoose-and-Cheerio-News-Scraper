@@ -6,7 +6,7 @@ var handlebars = require('express-handlebars');
 var mongoose = require('mongoose');
 var mongojs = require("mongojs");
 var bodyParser = require('body-parser');
-var mongoDB_URI = 'process.env.mongodb://heroku_d2zc0vzv:9j6kh7l49jnvtsirmam2rttkl8@ds243335.mlab.com:43335/heroku_d2zc0vzv';
+var mongoDB_URI = 'process.env.mongodb://heroku_d2zc0vzv:9j6kh7l49jnvtsirmam2rttkl8@ds243335.mlab.com:43335/heroku_d2zc0vzv' || 'mongodb://localhost/news';
 // var mongoDB_URI = process.env.mongoDB_URI || 'mongodb://localhost/news';
 
 
